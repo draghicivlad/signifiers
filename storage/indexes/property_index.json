@@ -1,0 +1,16 @@
+{
+  "http://example.org/precis/workspaces/lab308/artifacts/external_light_sensing308|http://example.org/LightSensor#hasLuminosityLevel": [
+    "raise-blinds-signifier",
+    "lower-blinds-signifier"
+  ],
+  "http://example.org/precis/workspaces/lab308/artifacts/temperature_sensor308|http://example.org/TemperatureSensor#hasTemperatureLevel": [
+    "raise-blinds-signifier",
+    "lower-blinds-signifier"
+  ],
+  "http://example.org/precis/workspaces/lab308/artifacts/internal_light_sensing308|http://example.org/LightSensor#hasLuminosityLevel": [
+    "turn-light-on-signifier"
+  ],
+  "http://example.org/precis/workspaces/lab308/artifacts/person_counter308|http://example.org/PersonCounter#hasPersonCount": [
+    "turn-light-on-signifier"
+  ]
+}

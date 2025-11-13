@@ -1,0 +1,46 @@
+{
+  "signifier_id": "turn-light-on-signifier",
+  "version": 1,
+  "status": "active",
+  "intent": {
+    "nl_text": "increase luminosity in a room",
+    "structured": {
+      "intent": "increase luminosity in a room"
+    }
+  },
+  "context": {
+    "structured_conditions": [
+      {
+        "artifact": "http://example.org/precis/workspaces/lab308/artifacts/internal_light_sensing308",
+        "property_affordance": "http://example.org/LightSensor#hasLuminosityLevel",
+        "value_conditions": [
+          {
+            "operator": "lessThan",
+            "value": 100,
+            "datatype": null
+          }
+        ]
+      },
+      {
+        "artifact": "http://example.org/precis/workspaces/lab308/artifacts/person_counter308",
+        "property_affordance": "http://example.org/PersonCounter#hasPersonCount",
+        "value_conditions": [
+          {
+            "operator": "greaterEqual",
+            "value": 1,
+            "datatype": null
+          }
+        ]
+      }
+    ],
+    "shacl_shapes": "@prefix sh: <http://www.w3.org/ns/shacl#> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\n[] a sh:NodeShape ;\n    sh:property [ sh:datatype xsd:integer ;\n            sh:maxInclusive 100 ;\n            sh:path <http://example.org/LightSensor#hasLuminosityLevel> ] ;\n    sh:targetClass <http://example.org/LightSensor> ;\n    sh:targetNode <http://example.org/precis/workspaces/lab308/artifacts/internal_light_sensing308> .\n\n[] a sh:NodeShape ;\n    sh:property [ sh:datatype xsd:integer ;\n            sh:minInclusive 1 ;\n            sh:path <http://example.org/PersonCounter#hasPersonCount> ] ;\n    sh:targetClass <http://example.org/PersonCounter> ;\n    sh:targetNode <http://example.org/precis/workspaces/lab308/artifacts/person_counter308> .\n\n",
+    "nl_description": "{\n            \t\"conditions\": [\n                \t{\n                    \t\"artifact\": \"http://example.org/precis/workspaces/lab308/artifacts/internal_light_sensing308\",\n                    \t\"propertyAffordance\": \"http://example.org/LightSensor#hasLuminosityLevel\",\n                    \t\"valueConditions\": [\n                        \t{\n                            \t\"operator\": \"lessThan\",\n                            \t\"value\": 100\n                        \t}\n                    \t]\n                \t},\n                \t{\n                    \t\"artifact\": \"http://example.org/precis/workspaces/lab308/artifacts/person_counter308\",\n                    \t\"propertyAffordance\": \"http://example.org/PersonCounter#hasPersonCount\",\n                    \t\"valueConditions\": [\n                        \t{\n                            \t\"operator\": \"greaterEqual\",\n                            \t\"value\": 1\n                        \t}\n                    \t]\n                \t}\n            \t]\n        \t}"
+  },
+  "affordance_uri": "file:///C:/Users/Vlad/Desktop/test/#adjust-light-action-affordance",
+  "provenance": {
+    "created_at": "2025-11-11T16:00:58.607778",
+    "created_by": "system",
+    "source": "rdf_import"
+  },
+  "indexes": {}
+}

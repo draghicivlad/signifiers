@@ -1,0 +1,22 @@
+{
+  "model": "claude-sonnet-4-20250514",
+  "maxTokens": 4096,
+  "permissions": {
+    "allowedTools": [
+      "Read",
+      "Write(src/**)",
+      "Write(tests/**)",
+      "Write(docs/**)",
+      "Bash(python *)",
+      "Bash(pytest *)",
+      "Bash(pip *)",
+      "Bash(git *)"
+    ],
+    "deny": [
+      "Write(.env*)",
+      "Write(**/*.pyc)",
+      "Bash(rm -rf *)",
+      "Bash(sudo *)"
+    ]
+  }
+}
