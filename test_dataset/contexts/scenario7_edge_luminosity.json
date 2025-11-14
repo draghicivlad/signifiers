@@ -1,0 +1,15 @@
+{
+  "description": "Scenario 7: Edge case - luminosity exactly at threshold (10000)",
+  "context_features": {
+    "http://example.org/precis/workspaces/lab308/artifacts/external_light_sensing308": {
+      "http://example.org/LightSensor#hasLuminosityLevel": 10000
+    },
+    "http://example.org/precis/workspaces/lab308/artifacts/temperature_sensor308": {
+      "http://example.org/TemperatureSensor#hasTemperatureLevel": 22
+    }
+  },
+  "artifact_types": {
+    "http://example.org/precis/workspaces/lab308/artifacts/external_light_sensing308": "http://example.org/LightSensor",
+    "http://example.org/precis/workspaces/lab308/artifacts/temperature_sensor308": "http://example.org/TemperatureSensor"
+  }
+}

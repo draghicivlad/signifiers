@@ -1,0 +1,14 @@
+{
+  "http://example.org/precis/workspaces/lab308/artifacts/temperature_sensor308|http://example.org/TemperatureSensor#hasTemperatureLevel": [
+    "heat-room-signifier",
+    "cool-room-signifier"
+  ],
+  "http://example.org/precis/workspaces/lab308/artifacts/person_counter308|http://example.org/PersonCounter#hasPersonCount": [
+    "turn-light-off-signifier",
+    "heat-room-signifier",
+    "start-meeting-mode-signifier"
+  ],
+  "http://example.org/precis/workspaces/lab308/artifacts/internal_light_sensing308|http://example.org/LightSensor#hasLuminosityLevel": [
+    "turn-light-off-signifier"
+  ]
+}

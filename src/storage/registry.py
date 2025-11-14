@@ -10,6 +10,7 @@ from typing import Dict, List, Optional
 from src.models.signifier import Signifier, SignifierStatus
 from src.storage.memory_store import MemoryStore
 from src.storage.representation import RepresentationService
+from src.validation import AuthoringValidationError, AuthoringValidator
 
 logger = logging.getLogger(__name__)
 
@@ -24,15 +25,25 @@ class SignifierRegistry:
     - Querying and filtering
     """
 
-    def __init__(self, storage_dir: Optional[str] = None):
+    def __init__(
+        self,
+        storage_dir: Optional[str] = None,
+        enable_authoring_validation: bool = False,
+    ):
         """Initialize the registry.
 
         Args:
             storage_dir: Directory for file-based storage (optional)
+            enable_authoring_validation: Enable SHACL validation at ingest
         """
         self.store = MemoryStore(storage_dir)
         self.repr_service = RepresentationService()
-        logger.info("Initialized SignifierRegistry")
+        self.enable_authoring_validation = enable_authoring_validation
+        self.authoring_validator = AuthoringValidator(strict_mode=False)
+        logger.info(
+            f"Initialized SignifierRegistry "
+            f"(authoring_validation={enable_authoring_validation})"
+        )
 
     def create(self, signifier: Signifier, rdf_data: Optional[str] = None) -> Signifier:
         """Create a new signifier.
@@ -52,6 +63,16 @@ class SignifierRegistry:
             raise ValueError(
                 f"Signifier {signifier.signifier_id} already exists. Use update instead."
             )
+
+        if self.enable_authoring_validation:
+            try:
+                self.authoring_validator.validate_and_raise(signifier)
+                logger.info(
+                    f"Authoring validation passed for {signifier.signifier_id}"
+                )
+            except AuthoringValidationError as e:
+                logger.error(f"Authoring validation failed: {e}")
+                raise ValueError(f"Authoring validation failed: {e}")
 
         normalized = self.repr_service.normalize_signifier(signifier)
 

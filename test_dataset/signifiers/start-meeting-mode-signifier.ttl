@@ -1,0 +1,42 @@
+@prefix cashmere: <https://aimas.cs.pub.ro/ont/cashmere#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix hmas: <https://aimas.cs.pub.ro/ont/cashmere#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<#start-meeting-mode-signifier> a cashmere:Signifier ;
+	cashmere:signifies <#meeting-mode-affordance> ;
+	cashmere:hasIntentionDescription [
+    	a cashmere:IntentionDescription ;
+    	cashmere:hasStructuredDescription """{
+            	"intent": "prepare room for meeting"
+        	}"""^^xsd:string ;
+	] ;
+	cashmere:recommendsContext [
+    	a cashmere:IntentContext ;
+    	cashmere:hasStructuredDescription """{
+            	"conditions": [
+                	{
+                    	"artifact": "http://example.org/precis/workspaces/lab308/artifacts/person_counter308",
+                    	"propertyAffordance": "http://example.org/PersonCounter#hasPersonCount",
+                    	"valueConditions": [
+                        	{
+                            	"operator": "greaterEqual",
+                            	"value": 3
+                        	}
+                    	]
+                	}
+            	]
+        	}"""^^xsd:string ;
+
+    	cashmere:hasShaclCondition [
+        	a sh:NodeShape ;
+        	sh:targetNode <http://example.org/precis/workspaces/lab308/artifacts/person_counter308> ;
+        	sh:targetClass <http://example.org/PersonCounter> ;
+        	sh:property [
+            	sh:path <http://example.org/PersonCounter#hasPersonCount> ;
+            	sh:datatype xsd:integer ;
+            	sh:minInclusive 3 ;
+        	]
+    	]
+	] .

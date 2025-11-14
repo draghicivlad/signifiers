@@ -13,6 +13,7 @@ from typing import List, Optional
 from fastapi import APIRouter, HTTPException, Query, status
 from pydantic import BaseModel, Field
 
+from src.config import get_settings
 from src.models.signifier import Signifier, SignifierStatus
 from src.storage.registry import SignifierRegistry
 
@@ -20,7 +21,11 @@ logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/signifiers", tags=["signifiers"])
 
-registry = SignifierRegistry()
+settings = get_settings()
+registry = SignifierRegistry(
+    storage_dir=settings.storage_dir,
+    enable_authoring_validation=settings.enable_authoring_validation,
+)
 
 
 class CreateSignifierRequest(BaseModel):

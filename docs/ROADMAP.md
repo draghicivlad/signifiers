@@ -47,40 +47,40 @@ Foundation for persisting signifiers with dual representation (NL + structured).
 ### Phase 2 - SHACL Constraints (Precise Validator)
 Add validation capabilities for context snapshots and signifier authoring.
 
-- [ ] Implement SHACL Validator (SV) module core
+- [DONE] Implement SHACL Validator (SV) module core (2025-11-13)
   - Parse and store SHACL shapes graphs
   - Validate context graphs against signifier shapes
   - Return conforms + violation details
 
-- [ ] Add authoring SHACL validation (toggle via flag)
+- [DONE] Add authoring SHACL validation (toggle via flag) (2025-11-13)
   - Validate signifier object structure at ingest
   - Check for required properties (signifies, hasIntentionDescription, recommendsContext)
   - Verify SHACL property paths use valid IRIs
 
-- [ ] Build runtime SHACL validation
+- [DONE] Build runtime SHACL validation (2025-11-13)
   - Evaluate constraints: datatype, minInclusive, maxInclusive, minExclusive, maxExclusive
   - Target node selection (sh:targetNode, sh:targetClass)
   - Property shape evaluation
 
-- [ ] Implement batch validation endpoint
+- [DONE] Implement batch validation endpoint (2025-11-13)
   - POST /validate/shacl for multiple candidates
   - Optimize for single context graph vs multiple signifiers
 
-- [ ] Add Context Graph Builder (CGB) module
+- [DONE] Add Context Graph Builder (CGB) module (2025-11-13)
   - Convert KV maps to canonical RDF
   - Extract context features: (artifact, property) -> value
   - Ensure typed literals (xsd:integer, etc.)
 
-- [ ] Implement validation result caching
+- [DONE] Implement validation result caching (2025-11-13)
   - Cache key: (signifier_id, rdf_hash, options)
   - Track cache hit rates
 
-- [ ] Create validation APIs
+- [DONE] Create validation APIs (2025-11-13)
   - POST /signifiers/validate-authoring
   - POST /validate/shacl
   - POST /context/normalize
 
-- [ ] Phase 2 acceptance criteria
+- [DONE] Phase 2 acceptance criteria (2025-11-13)
   - Invalid shapes rejected at ingest with diagnostics
   - Runtime validation returns conforms + top violations
   - Cache hit rate visible in metrics
@@ -108,28 +108,28 @@ Add validation capabilities for context snapshots and signifier authoring.
 ### Phase 3 - Intent Matcher (Replaceable, Versioned)
 Pluggable intent matching with multiple algorithm versions.
 
-- [ ] Design Intent Matcher (IM) interface
+- [DONE] Design Intent Matcher (IM) interface (2025-11-13)
   - Input: intent_query (nl_text | structured), k
   - Output: [(signifier_id, similarity)]
   - Versionable contract
 
-- [ ] Implement IM v0 - String Contains
+- [DONE] Implement IM v0 - String Contains (2025-11-13)
   - Search intent.nl_text for query tokens
   - Search structured JSON literal for tokens
   - Simple string matching algorithm
 
-- [ ] Implement IM v1 - Embedding Similarity
+- [DONE] Implement IM v1 - Embedding Similarity (2025-11-13)
   - Generate embeddings for intent.nl_text
   - Vector index for fast similarity search
   - Cosine similarity scoring
   - Store intent_embedding in signifier indexes
 
-- [ ] Add module version selection
+- [DONE] Add module version selection (2025-11-13)
   - Configurable default version
   - Per-request version override
   - Module registry with version tracking
 
-- [ ] Phase 3 acceptance criteria
+- [DONE] Phase 3 acceptance criteria (2025-11-13)
   - A/B test: route 50/50 to v0 and v1
   - Collect similarity distributions and latency
   - Deterministic behavior for same input/version

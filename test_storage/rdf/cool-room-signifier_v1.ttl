@@ -1,0 +1,33 @@
+@prefix hmas: <https://aimas.cs.pub.ro/ont/cashmere#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<file:///C:/Users/Vlad/signifiers/#cool-room-signifier> a hmas:Signifier ;
+    hmas:hasIntentionDescription [ a hmas:IntentionDescription ;
+            hmas:hasStructuredDescription """{
+            	"intent": "decrease temperature in room"
+        	}"""^^xsd:string ] ;
+    hmas:recommendsAbility [ a hmas:LLMReasoningAbility ] ;
+    hmas:recommendsContext [ a hmas:IntentContext ;
+            hmas:hasShaclCondition [ a sh:NodeShape ;
+                    sh:property [ sh:datatype xsd:integer ;
+                            sh:minInclusive 27 ;
+                            sh:path <http://example.org/TemperatureSensor#hasTemperatureLevel> ] ;
+                    sh:targetClass <http://example.org/TemperatureSensor> ;
+                    sh:targetNode <http://example.org/precis/workspaces/lab308/artifacts/temperature_sensor308> ] ;
+            hmas:hasStructuredDescription """{
+            	"conditions": [
+                	{
+                    	"artifact": "http://example.org/precis/workspaces/lab308/artifacts/temperature_sensor308",
+                    	"propertyAffordance": "http://example.org/TemperatureSensor#hasTemperatureLevel",
+                    	"valueConditions": [
+                        	{
+                            	"operator": "greaterThan",
+                            	"value": 26
+                        	}
+                    	]
+                	}
+            	]
+        	}"""^^xsd:string ] ;
+    hmas:signifies <file:///C:/Users/Vlad/signifiers/#cooling-control-affordance> .
+

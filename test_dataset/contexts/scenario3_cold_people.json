@@ -1,0 +1,15 @@
+{
+  "description": "Scenario 3: Cold room with people - Should match heat-room",
+  "context_features": {
+    "http://example.org/precis/workspaces/lab308/artifacts/temperature_sensor308": {
+      "http://example.org/TemperatureSensor#hasTemperatureLevel": 18
+    },
+    "http://example.org/precis/workspaces/lab308/artifacts/person_counter308": {
+      "http://example.org/PersonCounter#hasPersonCount": 2
+    }
+  },
+  "artifact_types": {
+    "http://example.org/precis/workspaces/lab308/artifacts/temperature_sensor308": "http://example.org/TemperatureSensor",
+    "http://example.org/precis/workspaces/lab308/artifacts/person_counter308": "http://example.org/PersonCounter"
+  }
+}

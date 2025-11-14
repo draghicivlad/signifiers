@@ -1,0 +1,35 @@
+{
+  "signifier_id": "cool-room-signifier",
+  "version": 1,
+  "status": "active",
+  "intent": {
+    "nl_text": "decrease temperature in room",
+    "structured": {
+      "intent": "decrease temperature in room"
+    }
+  },
+  "context": {
+    "structured_conditions": [
+      {
+        "artifact": "http://example.org/precis/workspaces/lab308/artifacts/temperature_sensor308",
+        "property_affordance": "http://example.org/TemperatureSensor#hasTemperatureLevel",
+        "value_conditions": [
+          {
+            "operator": "greaterThan",
+            "value": 26,
+            "datatype": null
+          }
+        ]
+      }
+    ],
+    "shacl_shapes": "@prefix sh: <http://www.w3.org/ns/shacl#> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\n[] a sh:NodeShape ;\n    sh:property [ sh:datatype xsd:integer ;\n            sh:minInclusive 27 ;\n            sh:path <http://example.org/TemperatureSensor#hasTemperatureLevel> ] ;\n    sh:targetClass <http://example.org/TemperatureSensor> ;\n    sh:targetNode <http://example.org/precis/workspaces/lab308/artifacts/temperature_sensor308> .\n\n",
+    "nl_description": "{\n            \t\"conditions\": [\n                \t{\n                    \t\"artifact\": \"http://example.org/precis/workspaces/lab308/artifacts/temperature_sensor308\",\n                    \t\"propertyAffordance\": \"http://example.org/TemperatureSensor#hasTemperatureLevel\",\n                    \t\"valueConditions\": [\n                        \t{\n                            \t\"operator\": \"greaterThan\",\n                            \t\"value\": 26\n                        \t}\n                    \t]\n                \t}\n            \t]\n        \t}"
+  },
+  "affordance_uri": "file:///C:/Users/Vlad/signifiers/#cooling-control-affordance",
+  "provenance": {
+    "created_at": "2025-11-13T18:37:47.547616+00:00",
+    "created_by": "system",
+    "source": "rdf_import"
+  },
+  "indexes": {}
+}

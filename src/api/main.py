@@ -10,7 +10,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from src.api.routes import signifiers
+from src.api.routes import matching, signifiers, validation
 from src.config import get_settings, setup_logging
 
 settings = get_settings()
@@ -32,6 +32,7 @@ async def lifespan(app: FastAPI):
     logger.info(f"Starting {settings.app_name} v{settings.version}")
     logger.info(f"Storage directory: {settings.storage_dir}")
     logger.info(f"Enabled modules: {settings.enabled_modules}")
+    logger.info(f"Authoring validation: {settings.enable_authoring_validation}")
     yield
     logger.info(f"Shutting down {settings.app_name}")
 
@@ -39,7 +40,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title=settings.app_name,
     version=settings.version,
-    description="RD4 Signifier System - Phase 1: Storage (MVP)",
+    description="RD4 Signifier System - Phase 3: Intent Matcher",
     lifespan=lifespan,
 )
 
@@ -52,6 +53,8 @@ app.add_middleware(
 )
 
 app.include_router(signifiers.router)
+app.include_router(validation.router)
+app.include_router(matching.router)
 
 
 @app.get("/")
@@ -64,7 +67,7 @@ async def root():
     return {
         "name": settings.app_name,
         "version": settings.version,
-        "phase": "Phase 1 - Storage (MVP)",
+        "phase": "Phase 3 - Intent Matcher",
         "status": "operational",
     }
 
