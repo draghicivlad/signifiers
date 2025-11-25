@@ -10,7 +10,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from src.api.routes import matching, signifiers, validation
+from src.api.routes import matching, signifiers, validation, simple_signifiers
 from src.config import get_settings, setup_logging
 
 settings = get_settings()
@@ -52,9 +52,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(signifiers.router)
-app.include_router(validation.router)
-app.include_router(matching.router)
+app.include_router(simple_signifiers.router)
+# app.include_router(signifiers.router)
+# app.include_router(validation.router)
+# app.include_router(matching.router)
 
 
 @app.get("/")
