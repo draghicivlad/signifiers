@@ -318,8 +318,12 @@ KG reasoning and LLM-based semantic judging.
 
 ### Testing
 - [DONE] Unit tests for Storage module (SR, MS, RS) (2025-11-11)
-- [ ] Unit tests for SHACL Validator (SV)
-- [ ] Unit tests for Intent Matcher versions (IM v0, v1)
+- [DONE] Unit tests for SHACL Validator (SV) (2025-11-13)
+- [DONE] Unit tests for Intent Matcher versions (IM v0, v1) (2025-11-13)
+- [DONE] Test scenario runner for automated testing (2025-11-25)
+  - Simplified script with clean output
+  - Support for multiple test scenarios
+  - JSON results with match details
 - [ ] Unit tests for SSE module
 - [ ] Unit tests for Ranker & Policy (RP)
 - [ ] Integration tests for retrieval pipeline

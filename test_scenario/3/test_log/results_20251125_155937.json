@@ -67,8 +67,8 @@
         "intent_similarity": 0.794,
         "shacl_conforms": false,
         "shacl_violations": [
-          "Value is not > Literal(\"25\", datatype=xsd:integer)",
-          "Value is not <= Literal(\"0\", datatype=xsd:integer)"
+          "Value is not <= Literal(\"0\", datatype=xsd:integer)",
+          "Value is not > Literal(\"25\", datatype=xsd:integer)"
         ]
       }
     ],
@@ -300,8 +300,8 @@
         "intent_similarity": 0.7738,
         "shacl_conforms": false,
         "shacl_violations": [
-          "Value is not <= Literal(\"0\", datatype=xsd:integer)",
-          "Value is not < Literal(\"20\", datatype=xsd:integer)"
+          "Value is not < Literal(\"20\", datatype=xsd:integer)",
+          "Value is not <= Literal(\"0\", datatype=xsd:integer)"
         ]
       },
       {
@@ -390,8 +390,8 @@
         "intent_similarity": 0.7655,
         "shacl_conforms": false,
         "shacl_violations": [
-          "Value is not < Literal(\"20\", datatype=xsd:integer)",
-          "Value is not >= Literal(\"3\", datatype=xsd:integer)"
+          "Value is not >= Literal(\"3\", datatype=xsd:integer)",
+          "Value is not < Literal(\"20\", datatype=xsd:integer)"
         ]
       }
     ],
@@ -454,8 +454,8 @@
         "intent_similarity": 0.7898,
         "shacl_conforms": false,
         "shacl_violations": [
-          "Value is not >= Literal(\"1\", datatype=xsd:integer)",
-          "Value is not < Literal(\"20\", datatype=xsd:integer)"
+          "Value is not < Literal(\"20\", datatype=xsd:integer)",
+          "Value is not >= Literal(\"1\", datatype=xsd:integer)"
         ]
       },
       {
@@ -471,8 +471,8 @@
         "intent_similarity": 0.7655,
         "shacl_conforms": false,
         "shacl_violations": [
-          "Value is not < Literal(\"20\", datatype=xsd:integer)",
-          "Value is not >= Literal(\"3\", datatype=xsd:integer)"
+          "Value is not >= Literal(\"3\", datatype=xsd:integer)",
+          "Value is not < Literal(\"20\", datatype=xsd:integer)"
         ]
       }
     ],
@@ -548,8 +548,8 @@
         "intent_similarity": 0.7891,
         "shacl_conforms": false,
         "shacl_violations": [
-          "Value is not <= Literal(\"0\", datatype=xsd:integer)",
-          "Value is not < Literal(\"20\", datatype=xsd:integer)"
+          "Value is not < Literal(\"20\", datatype=xsd:integer)",
+          "Value is not <= Literal(\"0\", datatype=xsd:integer)"
         ]
       },
       {
@@ -631,8 +631,8 @@
         "intent_similarity": 0.794,
         "shacl_conforms": false,
         "shacl_violations": [
-          "Value is not > Literal(\"25\", datatype=xsd:integer)",
-          "Value is not <= Literal(\"0\", datatype=xsd:integer)"
+          "Value is not <= Literal(\"0\", datatype=xsd:integer)",
+          "Value is not > Literal(\"25\", datatype=xsd:integer)"
         ]
       }
     ],

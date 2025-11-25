@@ -1,20 +1,20 @@
 {
   "http://example.org/artifacts/temperature_sensor|http://example.org/TemperatureSensor#hasTemperatureLevel": [
-    "cool-room-generic-signifier",
+    "heat-room-generic-signifier",
+    "cool-room-crowded-signifier",
+    "cool-room-empty-signifier",
+    "heat-room-occupied-signifier",
+    "cool-room-occupied-signifier",
     "heat-room-crowded-signifier",
     "heat-room-empty-signifier",
-    "heat-room-generic-signifier",
-    "cool-room-occupied-signifier",
-    "heat-room-occupied-signifier",
-    "cool-room-empty-signifier",
-    "cool-room-crowded-signifier"
+    "cool-room-generic-signifier"
   ],
   "http://example.org/artifacts/person_counter|http://example.org/PersonCounter#hasPersonCount": [
-    "heat-room-crowded-signifier",
-    "heat-room-empty-signifier",
-    "cool-room-occupied-signifier",
-    "heat-room-occupied-signifier",
+    "cool-room-crowded-signifier",
     "cool-room-empty-signifier",
-    "cool-room-crowded-signifier"
+    "heat-room-occupied-signifier",
+    "cool-room-occupied-signifier",
+    "heat-room-crowded-signifier",
+    "heat-room-empty-signifier"
   ]
 }
