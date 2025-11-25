@@ -29,3 +29,7 @@ Thumbs.db
 
 # Claude Code local settings
 .claude/settings.local.json
+
+storage/indexes/*
+storage/json/*
+storage/rdf/*
