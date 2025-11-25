@@ -3,20 +3,27 @@
 **Last Updated:** 2025-11-25
 
 ## Current State
-Test scenario infrastructure complete. System operational with automated testing framework for signifier matching.
+Simplified FastAPI interface complete. System operational with both programmatic and HTTP API access for signifier operations.
 
 ## Active Work
-Completed test scenario runner:
-- Automated test execution script for signifier matching
-- Clean output to stdout with detailed JSON results
-- Simplified query format (intent + context only)
-- Ready for regression testing and scenario validation
+Completed simplified API and API-based test runner:
+- Created simplified FastAPI routes for easy access
+- Implemented API-based scenario test runner
+- Both direct Python and HTTP API approaches now available
+- Ready for integration testing and API client development
 
 ## Blockers
 None
 
 ## Recent Changes
-1. 2025-11-25: Created Test Scenario Runner
+1. 2025-11-25: Created Simplified FastAPI Interface and API-Based Test Runner
+   - Built simplified API routes in src/api/routes/simple_signifiers.py
+   - Implemented 4 core endpoints: GET/POST/DELETE /signifiers, GET /signifiers/match
+   - Created API client test script (scripts/test_api_client.py)
+   - Built API-based scenario runner (scripts/run_scenario_test_api.py)
+   - All routes tested and working with scenario 3
+   - Fixed subprocess pipe blocking issue in server startup
+2. 2025-11-25: Created Test Scenario Runner
    - Built simplified test runner script (run_scenario_test.py)
    - Removed complicated logging and expected results comparison
    - Clean console output showing intent similarity and SHACL validation
@@ -70,8 +77,28 @@ python scripts/run_scenario_test.py test_scenario/1
 - SHACL validation: 2-5ms
 - Full scenario test: ~9 seconds (includes model loading)
 
+## API Routes
+### Simplified FastAPI Interface
+- GET /signifiers - List all signifiers in memory
+- POST /signifiers - Create signifier from RDF (Turtle) data
+- DELETE /signifiers - Clear all signifiers from memory
+- GET /signifiers/match - Match query with intent and context
+
+### Usage
+```bash
+# Start API server
+python -m uvicorn src.api.main:app --host 0.0.0.0 --port 8000
+
+# Run API-based scenario test
+python scripts/run_scenario_test_api.py test_scenario/3
+
+# Run API-based scenario test with auto server start
+python scripts/run_scenario_test_api.py test_scenario/3 --start-server
+```
+
 ## Next Steps
 1. Create additional test scenarios for edge cases
 2. Use test runner for regression testing after code changes
-3. Consider Phase 4 - Retrieval Orchestrator implementation
-4. Add performance stress tests (100+ signifiers)
+3. Develop client applications using the simplified API
+4. Consider Phase 4 - Retrieval Orchestrator implementation
+5. Add performance stress tests (100+ signifiers)

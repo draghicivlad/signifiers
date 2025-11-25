@@ -324,6 +324,10 @@ KG reasoning and LLM-based semantic judging.
   - Simplified script with clean output
   - Support for multiple test scenarios
   - JSON results with match details
+- [DONE] Simplified FastAPI interface (2025-11-25)
+  - 4 core endpoints: GET/POST/DELETE /signifiers, GET /signifiers/match
+  - API client test script
+  - API-based scenario runner
 - [ ] Unit tests for SSE module
 - [ ] Unit tests for Ranker & Policy (RP)
 - [ ] Integration tests for retrieval pipeline

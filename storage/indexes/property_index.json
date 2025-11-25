@@ -1,20 +1,53 @@
 {
   "http://example.org/artifacts/temperature_sensor|http://example.org/TemperatureSensor#hasTemperatureLevel": [
-    "cool-room-crowded-signifier",
-    "cool-room-generic-signifier",
-    "heat-room-crowded-signifier",
-    "cool-room-occupied-signifier",
     "heat-room-generic-signifier",
-    "heat-room-empty-signifier",
+    "cool-room-generic-signifier",
+    "lower-blinds-hot-signifier",
+    "cool-room-crowded-signifier",
+    "raise-blinds-sunny-signifier",
+    "cool-room-occupied-signifier",
+    "raise-blinds-sunny-occupied-signifier",
+    "heat-room-crowded-signifier",
+    "lower-blinds-hot-occupied-signifier",
     "heat-room-occupied-signifier",
-    "cool-room-empty-signifier"
+    "cool-room-empty-signifier",
+    "heat-room-empty-signifier"
   ],
   "http://example.org/artifacts/person_counter|http://example.org/PersonCounter#hasPersonCount": [
+    "decrease-light-intensity-signifier",
     "cool-room-crowded-signifier",
-    "heat-room-crowded-signifier",
+    "turn-on-lights-very-dark-signifier",
+    "turn-off-lights-empty-signifier",
     "cool-room-occupied-signifier",
-    "heat-room-empty-signifier",
+    "turn-on-lights-dark-signifier",
+    "raise-blinds-sunny-occupied-signifier",
+    "heat-room-crowded-signifier",
+    "lower-blinds-hot-occupied-signifier",
+    "turn-on-lights-dark-crowded-signifier",
+    "lower-blinds-privacy-signifier",
     "heat-room-occupied-signifier",
-    "cool-room-empty-signifier"
+    "cool-room-empty-signifier",
+    "heat-room-empty-signifier",
+    "lower-blinds-empty-signifier",
+    "increase-light-intensity-signifier"
+  ],
+  "http://example.org/artifacts/internal_light_sensor|http://example.org/LightSensor#hasLuminosityLevel": [
+    "decrease-light-intensity-signifier",
+    "turn-on-lights-very-dark-signifier",
+    "turn-off-lights-bright-signifier",
+    "turn-on-lights-dark-signifier",
+    "turn-on-lights-dark-crowded-signifier",
+    "raise-blinds-dark-inside-signifier",
+    "increase-light-intensity-signifier",
+    "lower-blinds-glare-signifier"
+  ],
+  "http://example.org/artifacts/external_light_sensor|http://example.org/LightSensor#hasLuminosityLevel": [
+    "lower-blinds-hot-signifier",
+    "raise-blinds-sunny-signifier",
+    "raise-blinds-sunny-occupied-signifier",
+    "lower-blinds-hot-occupied-signifier",
+    "lower-blinds-privacy-signifier",
+    "raise-blinds-dark-inside-signifier",
+    "lower-blinds-glare-signifier"
   ]
 }
