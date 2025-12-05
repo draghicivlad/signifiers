@@ -1,0 +1,668 @@
+{
+  "1": {
+    "query_id": "query-1-heat",
+    "description": "Room is cold (18\u00b0C), user wants to increase temperature",
+    "intent": "increase the temperature in the room.",
+    "context": {
+      "http://example.org/artifacts/temperature_sensor": {
+        "http://example.org/TemperatureSensor#hasTemperatureLevel": 18
+      }
+    },
+    "results": [
+      {
+        "signifier_id": "heat-room-signifier",
+        "final_score": 0.8532710766792297,
+        "passed_gates": true,
+        "signals": [
+          {
+            "name": "intent_similarity",
+            "value": 0.8432710766792297,
+            "weight": 0.7,
+            "is_gate": false
+          },
+          {
+            "name": "shacl_conforms",
+            "value": true,
+            "weight": 0.2,
+            "is_gate": true
+          }
+        ],
+        "explanation": [
+          "Intent similarity: 0.8433 (weight: 0.7)",
+          "SHACL validation: PASS (weight: 0.2)",
+          "Specificity boost: +0.0100 (1 constraints)"
+        ],
+        "metadata": {
+          "constraint_count": 1,
+          "shacl_has_shapes": true
+        }
+      },
+      {
+        "signifier_id": "cool-room-signifier",
+        "final_score": 0.0,
+        "passed_gates": false,
+        "signals": [
+          {
+            "name": "intent_similarity",
+            "value": 0.8253492712974548,
+            "weight": 0.7,
+            "is_gate": false
+          },
+          {
+            "name": "shacl_conforms",
+            "value": false,
+            "weight": 0.2,
+            "is_gate": true
+          }
+        ],
+        "explanation": [
+          "Intent similarity: 0.8253 (weight: 0.7)",
+          "SHACL validation: FAIL (hard gate)",
+          "Final score: 0.0 (failed hard gates)"
+        ],
+        "metadata": {
+          "constraint_count": 1,
+          "shacl_has_shapes": true
+        }
+      }
+    ],
+    "module_results": [
+      {
+        "module": "IM",
+        "latency_ms": 5094.7585105896,
+        "candidate_count": 2,
+        "metadata": {
+          "candidates": [
+            {
+              "signifier_id": "heat-room-signifier",
+              "intent_similarity": 0.8432710766792297,
+              "signifier": {
+                "signifier_id": "heat-room-signifier",
+                "version": 1,
+                "status": "active",
+                "intent": {
+                  "nl_text": "increase temperature in a room",
+                  "structured": {
+                    "intent": "increase temperature in a room"
+                  }
+                },
+                "context": {
+                  "structured_conditions": [
+                    {
+                      "artifact": "http://example.org/artifacts/temperature_sensor",
+                      "property_affordance": "http://example.org/TemperatureSensor#hasTemperatureLevel",
+                      "value_conditions": [
+                        {
+                          "operator": "lessThan",
+                          "value": 20,
+                          "datatype": null
+                        }
+                      ]
+                    }
+                  ],
+                  "shacl_shapes": "@prefix sh: <http://www.w3.org/ns/shacl#> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\n[] a sh:NodeShape ;\n    sh:property [ sh:datatype xsd:integer ;\n            sh:maxExclusive 20 ;\n            sh:path <http://example.org/TemperatureSensor#hasTemperatureLevel> ] ;\n    sh:targetNode <http://example.org/artifacts/temperature_sensor> .\n\n",
+                  "nl_description": "\n{\n    \"conditions\": [\n        {\n            \"artifact\": \"http://example.org/artifacts/temperature_sensor\",\n            \"propertyAffordance\": \"http://example.org/TemperatureSensor#hasTemperatureLevel\",\n            \"valueConditions\": [\n                {\n                    \"operator\": \"lessThan\",\n                    \"value\": 20\n                }\n            ]\n        }\n    ]\n}\n"
+                },
+                "affordance_uri": "http://example.org/affordances/heating-system",
+                "provenance": {
+                  "created_at": "2025-12-03T22:18:25.950905Z",
+                  "created_by": "system",
+                  "source": "rdf_import"
+                },
+                "indexes": {}
+              }
+            },
+            {
+              "signifier_id": "cool-room-signifier",
+              "intent_similarity": 0.8253492712974548,
+              "signifier": {
+                "signifier_id": "cool-room-signifier",
+                "version": 1,
+                "status": "active",
+                "intent": {
+                  "nl_text": "decrease temperature in a room",
+                  "structured": {
+                    "intent": "decrease temperature in a room"
+                  }
+                },
+                "context": {
+                  "structured_conditions": [
+                    {
+                      "artifact": "http://example.org/artifacts/temperature_sensor",
+                      "property_affordance": "http://example.org/TemperatureSensor#hasTemperatureLevel",
+                      "value_conditions": [
+                        {
+                          "operator": "greaterThan",
+                          "value": 25,
+                          "datatype": null
+                        }
+                      ]
+                    }
+                  ],
+                  "shacl_shapes": "@prefix sh: <http://www.w3.org/ns/shacl#> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\n[] a sh:NodeShape ;\n    sh:property [ sh:datatype xsd:integer ;\n            sh:minExclusive 25 ;\n            sh:path <http://example.org/TemperatureSensor#hasTemperatureLevel> ] ;\n    sh:targetNode <http://example.org/artifacts/temperature_sensor> .\n\n",
+                  "nl_description": "\n{\n    \"conditions\": [\n        {\n            \"artifact\": \"http://example.org/artifacts/temperature_sensor\",\n            \"propertyAffordance\": \"http://example.org/TemperatureSensor#hasTemperatureLevel\",\n            \"valueConditions\": [\n                {\n                    \"operator\": \"greaterThan\",\n                    \"value\": 25\n                }\n            ]\n        }\n    ]\n}\n"
+                },
+                "affordance_uri": "http://example.org/affordances/cooling-system",
+                "provenance": {
+                  "created_at": "2025-12-03T22:18:25.935897Z",
+                  "created_by": "system",
+                  "source": "rdf_import"
+                },
+                "indexes": {}
+              }
+            }
+          ],
+          "matcher_version": "v1"
+        }
+      },
+      {
+        "module": "SV",
+        "latency_ms": 14.916181564331055,
+        "candidate_count": 2,
+        "metadata": {
+          "candidates": [
+            {
+              "signifier_id": "heat-room-signifier",
+              "intent_similarity": 0.8432710766792297,
+              "signifier": {
+                "signifier_id": "heat-room-signifier",
+                "version": 1,
+                "status": "active",
+                "intent": {
+                  "nl_text": "increase temperature in a room",
+                  "structured": {
+                    "intent": "increase temperature in a room"
+                  }
+                },
+                "context": {
+                  "structured_conditions": [
+                    {
+                      "artifact": "http://example.org/artifacts/temperature_sensor",
+                      "property_affordance": "http://example.org/TemperatureSensor#hasTemperatureLevel",
+                      "value_conditions": [
+                        {
+                          "operator": "lessThan",
+                          "value": 20,
+                          "datatype": null
+                        }
+                      ]
+                    }
+                  ],
+                  "shacl_shapes": "@prefix sh: <http://www.w3.org/ns/shacl#> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\n[] a sh:NodeShape ;\n    sh:property [ sh:datatype xsd:integer ;\n            sh:maxExclusive 20 ;\n            sh:path <http://example.org/TemperatureSensor#hasTemperatureLevel> ] ;\n    sh:targetNode <http://example.org/artifacts/temperature_sensor> .\n\n",
+                  "nl_description": "\n{\n    \"conditions\": [\n        {\n            \"artifact\": \"http://example.org/artifacts/temperature_sensor\",\n            \"propertyAffordance\": \"http://example.org/TemperatureSensor#hasTemperatureLevel\",\n            \"valueConditions\": [\n                {\n                    \"operator\": \"lessThan\",\n                    \"value\": 20\n                }\n            ]\n        }\n    ]\n}\n"
+                },
+                "affordance_uri": "http://example.org/affordances/heating-system",
+                "provenance": {
+                  "created_at": "2025-12-03T22:18:25.950905Z",
+                  "created_by": "system",
+                  "source": "rdf_import"
+                },
+                "indexes": {}
+              },
+              "shacl_conforms": true,
+              "shacl_violations": [],
+              "shacl_has_shapes": true,
+              "constraint_count": 1
+            },
+            {
+              "signifier_id": "cool-room-signifier",
+              "intent_similarity": 0.8253492712974548,
+              "signifier": {
+                "signifier_id": "cool-room-signifier",
+                "version": 1,
+                "status": "active",
+                "intent": {
+                  "nl_text": "decrease temperature in a room",
+                  "structured": {
+                    "intent": "decrease temperature in a room"
+                  }
+                },
+                "context": {
+                  "structured_conditions": [
+                    {
+                      "artifact": "http://example.org/artifacts/temperature_sensor",
+                      "property_affordance": "http://example.org/TemperatureSensor#hasTemperatureLevel",
+                      "value_conditions": [
+                        {
+                          "operator": "greaterThan",
+                          "value": 25,
+                          "datatype": null
+                        }
+                      ]
+                    }
+                  ],
+                  "shacl_shapes": "@prefix sh: <http://www.w3.org/ns/shacl#> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\n[] a sh:NodeShape ;\n    sh:property [ sh:datatype xsd:integer ;\n            sh:minExclusive 25 ;\n            sh:path <http://example.org/TemperatureSensor#hasTemperatureLevel> ] ;\n    sh:targetNode <http://example.org/artifacts/temperature_sensor> .\n\n",
+                  "nl_description": "\n{\n    \"conditions\": [\n        {\n            \"artifact\": \"http://example.org/artifacts/temperature_sensor\",\n            \"propertyAffordance\": \"http://example.org/TemperatureSensor#hasTemperatureLevel\",\n            \"valueConditions\": [\n                {\n                    \"operator\": \"greaterThan\",\n                    \"value\": 25\n                }\n            ]\n        }\n    ]\n}\n"
+                },
+                "affordance_uri": "http://example.org/affordances/cooling-system",
+                "provenance": {
+                  "created_at": "2025-12-03T22:18:25.935897Z",
+                  "created_by": "system",
+                  "source": "rdf_import"
+                },
+                "indexes": {}
+              },
+              "shacl_conforms": false,
+              "shacl_violations": [
+                "Value is not > Literal(\"25\", datatype=xsd:integer)"
+              ],
+              "shacl_has_shapes": true,
+              "constraint_count": 1
+            }
+          ],
+          "passed_count": 1
+        }
+      },
+      {
+        "module": "RP",
+        "latency_ms": 0.0,
+        "candidate_count": 2,
+        "metadata": {
+          "ranked_results": [
+            {
+              "signifier_id": "heat-room-signifier",
+              "final_score": 0.8532710766792297,
+              "signals": [
+                {
+                  "name": "intent_similarity",
+                  "value": 0.8432710766792297,
+                  "weight": 0.7,
+                  "is_gate": false
+                },
+                {
+                  "name": "shacl_conforms",
+                  "value": true,
+                  "weight": 0.2,
+                  "is_gate": true
+                }
+              ],
+              "passed_gates": true,
+              "explanation": [
+                "Intent similarity: 0.8433 (weight: 0.7)",
+                "SHACL validation: PASS (weight: 0.2)",
+                "Specificity boost: +0.0100 (1 constraints)"
+              ],
+              "metadata": {
+                "constraint_count": 1,
+                "shacl_has_shapes": true
+              }
+            },
+            {
+              "signifier_id": "cool-room-signifier",
+              "final_score": 0.0,
+              "signals": [
+                {
+                  "name": "intent_similarity",
+                  "value": 0.8253492712974548,
+                  "weight": 0.7,
+                  "is_gate": false
+                },
+                {
+                  "name": "shacl_conforms",
+                  "value": false,
+                  "weight": 0.2,
+                  "is_gate": true
+                }
+              ],
+              "passed_gates": false,
+              "explanation": [
+                "Intent similarity: 0.8253 (weight: 0.7)",
+                "SHACL validation: FAIL (hard gate)",
+                "Final score: 0.0 (failed hard gates)"
+              ],
+              "metadata": {
+                "constraint_count": 1,
+                "shacl_has_shapes": true
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "total_latency_ms": 5109.674692153931,
+    "summary": {
+      "total_results": 2,
+      "passed_gates": 1,
+      "failed_gates": 1,
+      "pipeline": [
+        "IM",
+        "SV",
+        "RP"
+      ],
+      "intent_query": "increase the temperature in the room."
+    }
+  },
+  "2": {
+    "query_id": "query-2-cool",
+    "description": "Room is hot (28\u00b0C), user wants to decrease temperature",
+    "intent": "decrease temperature",
+    "context": {
+      "http://example.org/artifacts/temperature_sensor": {
+        "http://example.org/TemperatureSensor#hasTemperatureLevel": 28
+      }
+    },
+    "results": [
+      {
+        "signifier_id": "cool-room-signifier",
+        "final_score": 0.9048457241058351,
+        "passed_gates": true,
+        "signals": [
+          {
+            "name": "intent_similarity",
+            "value": 0.894845724105835,
+            "weight": 0.7,
+            "is_gate": false
+          },
+          {
+            "name": "shacl_conforms",
+            "value": true,
+            "weight": 0.2,
+            "is_gate": true
+          }
+        ],
+        "explanation": [
+          "Intent similarity: 0.8948 (weight: 0.7)",
+          "SHACL validation: PASS (weight: 0.2)",
+          "Specificity boost: +0.0100 (1 constraints)"
+        ],
+        "metadata": {
+          "constraint_count": 1,
+          "shacl_has_shapes": true
+        }
+      },
+      {
+        "signifier_id": "heat-room-signifier",
+        "final_score": 0.0,
+        "passed_gates": false,
+        "signals": [
+          {
+            "name": "intent_similarity",
+            "value": 0.7916712760925293,
+            "weight": 0.7,
+            "is_gate": false
+          },
+          {
+            "name": "shacl_conforms",
+            "value": false,
+            "weight": 0.2,
+            "is_gate": true
+          }
+        ],
+        "explanation": [
+          "Intent similarity: 0.7917 (weight: 0.7)",
+          "SHACL validation: FAIL (hard gate)",
+          "Final score: 0.0 (failed hard gates)"
+        ],
+        "metadata": {
+          "constraint_count": 1,
+          "shacl_has_shapes": true
+        }
+      }
+    ],
+    "module_results": [
+      {
+        "module": "IM",
+        "latency_ms": 5.980968475341797,
+        "candidate_count": 2,
+        "metadata": {
+          "candidates": [
+            {
+              "signifier_id": "cool-room-signifier",
+              "intent_similarity": 0.894845724105835,
+              "signifier": {
+                "signifier_id": "cool-room-signifier",
+                "version": 1,
+                "status": "active",
+                "intent": {
+                  "nl_text": "decrease temperature in a room",
+                  "structured": {
+                    "intent": "decrease temperature in a room"
+                  }
+                },
+                "context": {
+                  "structured_conditions": [
+                    {
+                      "artifact": "http://example.org/artifacts/temperature_sensor",
+                      "property_affordance": "http://example.org/TemperatureSensor#hasTemperatureLevel",
+                      "value_conditions": [
+                        {
+                          "operator": "greaterThan",
+                          "value": 25,
+                          "datatype": null
+                        }
+                      ]
+                    }
+                  ],
+                  "shacl_shapes": "@prefix sh: <http://www.w3.org/ns/shacl#> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\n[] a sh:NodeShape ;\n    sh:property [ sh:datatype xsd:integer ;\n            sh:minExclusive 25 ;\n            sh:path <http://example.org/TemperatureSensor#hasTemperatureLevel> ] ;\n    sh:targetNode <http://example.org/artifacts/temperature_sensor> .\n\n",
+                  "nl_description": "\n{\n    \"conditions\": [\n        {\n            \"artifact\": \"http://example.org/artifacts/temperature_sensor\",\n            \"propertyAffordance\": \"http://example.org/TemperatureSensor#hasTemperatureLevel\",\n            \"valueConditions\": [\n                {\n                    \"operator\": \"greaterThan\",\n                    \"value\": 25\n                }\n            ]\n        }\n    ]\n}\n"
+                },
+                "affordance_uri": "http://example.org/affordances/cooling-system",
+                "provenance": {
+                  "created_at": "2025-12-03T22:18:25.935897Z",
+                  "created_by": "system",
+                  "source": "rdf_import"
+                },
+                "indexes": {}
+              }
+            },
+            {
+              "signifier_id": "heat-room-signifier",
+              "intent_similarity": 0.7916712760925293,
+              "signifier": {
+                "signifier_id": "heat-room-signifier",
+                "version": 1,
+                "status": "active",
+                "intent": {
+                  "nl_text": "increase temperature in a room",
+                  "structured": {
+                    "intent": "increase temperature in a room"
+                  }
+                },
+                "context": {
+                  "structured_conditions": [
+                    {
+                      "artifact": "http://example.org/artifacts/temperature_sensor",
+                      "property_affordance": "http://example.org/TemperatureSensor#hasTemperatureLevel",
+                      "value_conditions": [
+                        {
+                          "operator": "lessThan",
+                          "value": 20,
+                          "datatype": null
+                        }
+                      ]
+                    }
+                  ],
+                  "shacl_shapes": "@prefix sh: <http://www.w3.org/ns/shacl#> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\n[] a sh:NodeShape ;\n    sh:property [ sh:datatype xsd:integer ;\n            sh:maxExclusive 20 ;\n            sh:path <http://example.org/TemperatureSensor#hasTemperatureLevel> ] ;\n    sh:targetNode <http://example.org/artifacts/temperature_sensor> .\n\n",
+                  "nl_description": "\n{\n    \"conditions\": [\n        {\n            \"artifact\": \"http://example.org/artifacts/temperature_sensor\",\n            \"propertyAffordance\": \"http://example.org/TemperatureSensor#hasTemperatureLevel\",\n            \"valueConditions\": [\n                {\n                    \"operator\": \"lessThan\",\n                    \"value\": 20\n                }\n            ]\n        }\n    ]\n}\n"
+                },
+                "affordance_uri": "http://example.org/affordances/heating-system",
+                "provenance": {
+                  "created_at": "2025-12-03T22:18:25.950905Z",
+                  "created_by": "system",
+                  "source": "rdf_import"
+                },
+                "indexes": {}
+              }
+            }
+          ],
+          "matcher_version": "v1"
+        }
+      },
+      {
+        "module": "SV",
+        "latency_ms": 4.98199462890625,
+        "candidate_count": 2,
+        "metadata": {
+          "candidates": [
+            {
+              "signifier_id": "cool-room-signifier",
+              "intent_similarity": 0.894845724105835,
+              "signifier": {
+                "signifier_id": "cool-room-signifier",
+                "version": 1,
+                "status": "active",
+                "intent": {
+                  "nl_text": "decrease temperature in a room",
+                  "structured": {
+                    "intent": "decrease temperature in a room"
+                  }
+                },
+                "context": {
+                  "structured_conditions": [
+                    {
+                      "artifact": "http://example.org/artifacts/temperature_sensor",
+                      "property_affordance": "http://example.org/TemperatureSensor#hasTemperatureLevel",
+                      "value_conditions": [
+                        {
+                          "operator": "greaterThan",
+                          "value": 25,
+                          "datatype": null
+                        }
+                      ]
+                    }
+                  ],
+                  "shacl_shapes": "@prefix sh: <http://www.w3.org/ns/shacl#> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\n[] a sh:NodeShape ;\n    sh:property [ sh:datatype xsd:integer ;\n            sh:minExclusive 25 ;\n            sh:path <http://example.org/TemperatureSensor#hasTemperatureLevel> ] ;\n    sh:targetNode <http://example.org/artifacts/temperature_sensor> .\n\n",
+                  "nl_description": "\n{\n    \"conditions\": [\n        {\n            \"artifact\": \"http://example.org/artifacts/temperature_sensor\",\n            \"propertyAffordance\": \"http://example.org/TemperatureSensor#hasTemperatureLevel\",\n            \"valueConditions\": [\n                {\n                    \"operator\": \"greaterThan\",\n                    \"value\": 25\n                }\n            ]\n        }\n    ]\n}\n"
+                },
+                "affordance_uri": "http://example.org/affordances/cooling-system",
+                "provenance": {
+                  "created_at": "2025-12-03T22:18:25.935897Z",
+                  "created_by": "system",
+                  "source": "rdf_import"
+                },
+                "indexes": {}
+              },
+              "shacl_conforms": true,
+              "shacl_violations": [],
+              "shacl_has_shapes": true,
+              "constraint_count": 1
+            },
+            {
+              "signifier_id": "heat-room-signifier",
+              "intent_similarity": 0.7916712760925293,
+              "signifier": {
+                "signifier_id": "heat-room-signifier",
+                "version": 1,
+                "status": "active",
+                "intent": {
+                  "nl_text": "increase temperature in a room",
+                  "structured": {
+                    "intent": "increase temperature in a room"
+                  }
+                },
+                "context": {
+                  "structured_conditions": [
+                    {
+                      "artifact": "http://example.org/artifacts/temperature_sensor",
+                      "property_affordance": "http://example.org/TemperatureSensor#hasTemperatureLevel",
+                      "value_conditions": [
+                        {
+                          "operator": "lessThan",
+                          "value": 20,
+                          "datatype": null
+                        }
+                      ]
+                    }
+                  ],
+                  "shacl_shapes": "@prefix sh: <http://www.w3.org/ns/shacl#> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\n[] a sh:NodeShape ;\n    sh:property [ sh:datatype xsd:integer ;\n            sh:maxExclusive 20 ;\n            sh:path <http://example.org/TemperatureSensor#hasTemperatureLevel> ] ;\n    sh:targetNode <http://example.org/artifacts/temperature_sensor> .\n\n",
+                  "nl_description": "\n{\n    \"conditions\": [\n        {\n            \"artifact\": \"http://example.org/artifacts/temperature_sensor\",\n            \"propertyAffordance\": \"http://example.org/TemperatureSensor#hasTemperatureLevel\",\n            \"valueConditions\": [\n                {\n                    \"operator\": \"lessThan\",\n                    \"value\": 20\n                }\n            ]\n        }\n    ]\n}\n"
+                },
+                "affordance_uri": "http://example.org/affordances/heating-system",
+                "provenance": {
+                  "created_at": "2025-12-03T22:18:25.950905Z",
+                  "created_by": "system",
+                  "source": "rdf_import"
+                },
+                "indexes": {}
+              },
+              "shacl_conforms": false,
+              "shacl_violations": [
+                "Value is not < Literal(\"20\", datatype=xsd:integer)"
+              ],
+              "shacl_has_shapes": true,
+              "constraint_count": 1
+            }
+          ],
+          "passed_count": 1
+        }
+      },
+      {
+        "module": "RP",
+        "latency_ms": 0.0,
+        "candidate_count": 2,
+        "metadata": {
+          "ranked_results": [
+            {
+              "signifier_id": "cool-room-signifier",
+              "final_score": 0.9048457241058351,
+              "signals": [
+                {
+                  "name": "intent_similarity",
+                  "value": 0.894845724105835,
+                  "weight": 0.7,
+                  "is_gate": false
+                },
+                {
+                  "name": "shacl_conforms",
+                  "value": true,
+                  "weight": 0.2,
+                  "is_gate": true
+                }
+              ],
+              "passed_gates": true,
+              "explanation": [
+                "Intent similarity: 0.8948 (weight: 0.7)",
+                "SHACL validation: PASS (weight: 0.2)",
+                "Specificity boost: +0.0100 (1 constraints)"
+              ],
+              "metadata": {
+                "constraint_count": 1,
+                "shacl_has_shapes": true
+              }
+            },
+            {
+              "signifier_id": "heat-room-signifier",
+              "final_score": 0.0,
+              "signals": [
+                {
+                  "name": "intent_similarity",
+                  "value": 0.7916712760925293,
+                  "weight": 0.7,
+                  "is_gate": false
+                },
+                {
+                  "name": "shacl_conforms",
+                  "value": false,
+                  "weight": 0.2,
+                  "is_gate": true
+                }
+              ],
+              "passed_gates": false,
+              "explanation": [
+                "Intent similarity: 0.7917 (weight: 0.7)",
+                "SHACL validation: FAIL (hard gate)",
+                "Final score: 0.0 (failed hard gates)"
+              ],
+              "metadata": {
+                "constraint_count": 1,
+                "shacl_has_shapes": true
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "total_latency_ms": 10.962963104248047,
+    "summary": {
+      "total_results": 2,
+      "passed_gates": 1,
+      "failed_gates": 1,
+      "pipeline": [
+        "IM",
+        "SV",
+        "RP"
+      ],
+      "intent_query": "decrease temperature"
+    }
+  }
+}

@@ -1,22 +1,36 @@
 # Project Status
 
-**Last Updated:** 2025-11-25
+**Last Updated:** 2025-12-03
 
 ## Current State
-Simplified FastAPI interface complete. System operational with both programmatic and HTTP API access for signifier operations.
+Phase 5 Structured Subsumption Engine complete. System now supports full pipeline execution with Intent Matching, SSE pre-filtering, SHACL Validation, and Ranking with explainability.
 
 ## Active Work
-Completed simplified API and API-based test runner:
-- Created simplified FastAPI routes for easy access
-- Implemented API-based scenario test runner
-- Both direct Python and HTTP API approaches now available
-- Ready for integration testing and API client development
+Completed Phase 5 - Structured Subsumption Engine implementation:
+- Implemented SSE module for fast numeric pre-filtering
+- Integrated SSE into orchestrator pipeline (IM -> SSE -> SV -> RP)
+- SSE evaluates structured conditions before expensive SHACL validation
+- Latency: 0-1ms per query (extremely fast)
+- All test scenarios (1, 2, 3, 4) passing with SSE enabled
 
 ## Blockers
 None
 
 ## Recent Changes
-1. 2025-11-25: Created Simplified FastAPI Interface and API-Based Test Runner
+1. 2025-12-03: Completed Phase 5 - Structured Subsumption Engine
+   - Implemented SSE core module with operator support (>, <, >=, <=, =, !=)
+   - Added SSE to orchestrator pipeline between IM and SV
+   - Updated ranker to include sse_pass signal (weight: 0.1)
+   - SSE provides extremely fast pre-filtering (0-1ms latency)
+   - All scenarios tested and working correctly
+2. 2025-12-03: Completed Phase 4 - Retrieval Orchestrator
+   - Implemented Ranker & Policy (RP) module with configurable weights
+   - Created Retrieval Orchestrator (ORCH) for pipeline execution
+   - Added POST /retrieve/match endpoint with full pipeline support
+   - Built enhanced scenario test runner (run_scenario_orchestrator.py)
+   - All scenarios tested and working (latency 40-130ms after model load)
+   - Per-module latency tracking and signal explanations included
+2. 2025-11-25: Created Simplified FastAPI Interface and API-Based Test Runner
    - Built simplified API routes in src/api/routes/simple_signifiers.py
    - Implemented 4 core endpoints: GET/POST/DELETE /signifiers, GET /signifiers/match
    - Created API client test script (scripts/test_api_client.py)

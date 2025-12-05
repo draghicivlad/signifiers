@@ -12,6 +12,118 @@ Each entry should include:
 
 ---
 
+## 2025-12-03
+
+### Phase 5 - Structured Subsumption Engine Implementation
+**Files:**
+- src/subsumption/__init__.py (new)
+- src/subsumption/sse.py (new)
+- src/orchestrator/orchestrator.py (updated)
+- src/api/routes/retrieval.py (updated)
+- scripts/run_scenario_orchestrator.py (updated)
+
+**Description:**
+Implemented complete Phase 5 Structured Subsumption Engine (SSE) for fast numeric pre-filtering:
+
+1. SSE Core Module:
+   - Evaluates structured conditions using numeric operators
+   - Supported operators: greaterThan, lessThan, greaterEqual, lessEqual, equals, notEquals
+   - Configurable missing value policy: fail, ignore, pass
+   - Type coercion for numeric comparisons
+   - Violation tracking with detailed messages
+
+2. Pipeline Integration:
+   - Position: After IM, before SV (IM -> SSE -> SV -> RP)
+   - Optional execution via enable_sse parameter
+   - Per-module latency tracking
+   - Candidate filtering based on sse_pass signal
+
+3. Ranker Integration:
+   - Added sse_pass signal to ranking (weight: 0.1)
+   - Three-signal scoring: intent_similarity (0.7), shacl (0.2), sse (0.1)
+   - Optional SSE gate enforcement (currently disabled)
+
+4. API Updates:
+   - Added enable_sse parameter to retrieval endpoint
+   - Updated default pipeline to include SSE
+   - SSE module results included in response
+
+**Testing:**
+- All scenarios (1, 2, 3, 4) tested successfully with SSE enabled
+- SSE latency: 0-1ms per query (extremely fast)
+- Correct pass/fail on boundary conditions
+- Proper signal integration in final scores
+
+**Performance:**
+- SSE provides very fast pre-filtering: 0-1ms
+- Compared to SHACL (15-50ms), SSE is 15-50x faster
+- Enables potential candidate reduction before expensive validation
+
+**Notes:**
+- SSE currently does not filter candidates (all pass through)
+- Future: Enable SSE as hard gate for candidate reduction
+- Missing value policy set to "fail" by default
+- Type coercion enabled for numeric comparisons
+
+---
+
+### Phase 4 - Retrieval Orchestrator Implementation
+**Files:**
+- src/ranking/__init__.py (new)
+- src/ranking/ranker.py (new)
+- src/orchestrator/__init__.py (new)
+- src/orchestrator/orchestrator.py (new)
+- src/api/routes/retrieval.py (new)
+- src/api/main.py (updated)
+- scripts/run_scenario_orchestrator.py (new)
+- requirements.txt (updated)
+
+**Description:**
+Implemented complete Phase 4 Retrieval Orchestrator with the following components:
+
+1. Ranker & Policy (RP) Module:
+   - Combines multiple signals (intent_similarity, shacl_conforms) into weighted scores
+   - Implements hard gate logic for SHACL validation enforcement
+   - Provides explainability with per-signal contributions
+   - Supports tie-breaking via specificity boost
+   - Configurable weights: intent_similarity=0.7, shacl=0.2, sse=0.1
+
+2. Retrieval Orchestrator (ORCH):
+   - Executes configurable pipeline: [IM, SV, RP]
+   - Per-module latency tracking
+   - Signal aggregation across modules
+   - Default pipeline implementation
+   - Support for pipeline configuration overrides
+
+3. Retrieval API Endpoint:
+   - POST /retrieve/match endpoint
+   - Full request/response models with validation
+   - Pipeline configuration support
+   - Comprehensive response with results, module metrics, and explanations
+
+4. Enhanced Test Runner:
+   - Created run_scenario_orchestrator.py for Phase 4 testing
+   - Uses new /retrieve/match endpoint
+   - Displays pipeline execution metrics
+   - Shows ranked results with signal details
+   - Saves detailed JSON results
+
+**Testing:**
+- All scenarios (1, 2, 3, 4) tested successfully
+- Scenario 1: 2 signifiers, 2 queries - PASSED
+- Scenario 2: 4 signifiers, 6 queries - PASSED
+- Scenario 3: 8 signifiers, 8 queries - PASSED
+- Scenario 4: 23 signifiers, 15 queries - PASSED
+- Pipeline latency: 40-130ms (after model load), 5-22s (first query with model loading)
+
+**Notes:**
+- SSE (Phase 5) module not yet implemented, marked as optional in ranker
+- Hard gates properly enforcing SHACL validation requirements
+- Explanation system providing human-readable signal contributions
+- Updated API description from "Phase 3" to "Phase 4"
+
+---
+
 ## 2025-11-25
 
 ### Test Scenario Runner
